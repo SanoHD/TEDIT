@@ -2,13 +2,15 @@
 import os, sys, shlex, re
 from termcolor import *
 from itertools import groupby
-
-clear = lambda: os.system("clear")
+try:
+    clear = lambda: os.system("clear")
+except OSError:
+    clear = lambda: os.system("cls")
 clear()
 
-path = os.getcwd() + "/"
+path = os.getcwd().replace("\\","/") + "/"
 
-version = "1.0"
+version = "1.1"
 
 text = []
 header = "TEDIT Version {version} - By CMinusMinus".replace("{version}",version)
@@ -19,19 +21,6 @@ var = ""
 find = None
 find_ignorecase = False
 
-"""
-1 Hello, world!
-2 old text
-3 BYE.
-====================================== Change line 2
-+>2 ! new text in line 2
-====================================== Replace in line 2 
-+>2 ? old || new
-====================================== Replace in line 2, ignore case
-+>2 ?* old || new
-====================================== Change line 2
-+>2 ! new text in line 2
-"""
 
 HELP = """
 TextEDIT (tedit) by CMinusMinus
@@ -272,8 +261,20 @@ def editor():
                     text = text[1:]
                     log = "Deleted first line"
                 elif x[0] == "-*":
-                    text = text[:-1]
-                    log = "Deleted line"
+                    try:
+                        LN = int(x[1])
+                        try:
+                            del text[LN]
+                            log = "Deleted line"
+                        except IndexError:
+                            log = "Invalid line"
+                    except IndexError:
+                        log = "Need Line-Number {-* {LN}}"
+                        
+                    
+                        
+                    
+                        
                 elif x[0] == "---":
                     _text = text
                     text = []
@@ -315,6 +316,8 @@ def editor():
                         log = "File saved: "+str(new)
                     except IsADirectoryError:
                         log = "Error; Location is a directory"
+                    except FileNotFoundError:
+                        log = "Error; Invalid path"
                 else:
                     if fileexist(new):
                         fullpath = path+new
@@ -396,6 +399,10 @@ except KeyboardInterrupt:
                     except IsADirectoryError:
                         input("INVALID PATH: IS DIRECTORY [enter]")
                         continue
+                    except FileNotFoundError:
+                        input("INVALID PATH: DIRECTORY DOES NOT EXIST? [enter]")
+                        continue
+                    
                 else:
                     if fileexist(new):
                         fullpath = path+new
@@ -417,9 +424,6 @@ except KeyboardInterrupt:
                     break
                 elif yn == "n":
                     pass
-
-
-
 
 
 
