@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os, sys, shlex, re
 from termcolor import *
 from itertools import groupby
