@@ -1,0 +1,21 @@
+===Tutorial===
+TEDIT is written for Linux systems.
+Maybe there are some errors, when using with Windows. If you get errors, contact me.
+
+If you are using TEDIT the first time, make shure, you have these things installed:
+- Python 3.7.3
+Make shure, that you have these Python packages installed:
+- termcolor (can be installed with >>> pip3 install termcolor)
+
+To start TEDIT, type
+    python3 tedit.py [filename]
+
+To get the TEDIT documentation, type
+    python3 tedit.py --help
+or type 'help' in the TEDIT Shell.
+
+Debian systems only:
+It is easier to make tedit.py an executable.
+To do so, put tedit.py as 'tedit' (without '.py') into /usr/bin/
+and run 'chmod +x tedit' on it. Now, the >tedit< command should be available
+from everywhere on your linux system.
