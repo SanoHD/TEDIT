@@ -1,0 +1,14 @@
+Version 1.0
+- Started project
+
+Version 1.0.1
+- Fixed command for deleting lines by number
+- Added and fixed errors
+
+Version 1.1
+- Added commands
+- Exported documentation to an extra file
+- Expanded documentation
+- Added quick-help
+- Bug fixes
+- Changed 
