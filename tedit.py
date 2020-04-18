@@ -10,7 +10,7 @@ clear()
 
 path = os.getcwd().replace("\\","/") + "/"
 
-version = "1.1"
+version = "1.0.1"
 
 text = []
 header = "TEDIT Version {version} - By CMinusMinus".replace("{version}",version)
